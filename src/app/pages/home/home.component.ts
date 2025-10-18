@@ -47,7 +47,7 @@ export class HomeComponent {
       nombre: 'Alfarería Tradicional',
       descripcion: 'Set de vasos hechos con colores naturales y técnicas ancestrales.',
       categoria: 'Cerámica',
-      ubicacion: 'Tarata, Cochabamba',
+      ubicacion: 'Cochabamba',
       precio: 280,
       imagen: 'assets/imagenes/hero-artesania.jpg',
       etiqueta: 'Descuento'
