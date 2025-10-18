@@ -7,9 +7,11 @@
         <p>Artesanías Auténticas</p>
       </div>
     </div>
+
     <div class="search">
       <input type="text" placeholder="Buscar artesanías..." />
     </div>
+
     <button class="explore-btn">Explorar</button>
   </div>
 
@@ -19,8 +21,28 @@
     <a routerLink="/para-artesanos">Para Artesanos</a>
     <a routerLink="/nosotros">Nosotros</a>
     <a routerLink="/soporte">Soporte</a>
-    <i class="bi bi-person"></i>
-    <i class="bi bi-cart"></i>
+
+    <div class="icons">
+      <span class="icon-user" title="Mi cuenta">👤</span>
+      <span class="icon-cart" title="Carrito" (click)="toggleCarrito()">🛒</span>
+    </div>
+  </div>
+</nav>
+
+<!-- === PANEL DE CARRITO === -->
+<div class="carrito-overlay" *ngIf="carritoAbierto" (click)="toggleCarrito()"></div>
+
+<div class="carrito" [class.abierto]="carritoAbierto">
+  <div class="carrito-header">
+    <h3>Carrito de Compras</h3>
+    <button class="cerrar" (click)="toggleCarrito()">✕</button>
   </div>
 
-</nav>
+  <div class="carrito-body">
+    <div class="carrito-vacio">
+      <div class="icono-bolsa">👜</div>
+      <h4>Tu carrito está vacío</h4>
+      <p>Agrega productos para comenzar</p>
+    </div>
+  </div>
+</div>
