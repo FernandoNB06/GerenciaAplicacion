@@ -1,0 +1,367 @@
+.soporte {
+  padding: 80px 60px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1c1c1c;
+  background-color: #fff;
+
+  .header {
+    margin-bottom: 50px;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 15px;
+    }
+  }
+
+  .contactos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    justify-content: center;
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #eaeaea;
+      border-radius: 14px;
+      padding: 30px 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .icono {
+        font-size: 22px;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+      }
+
+      .whatsapp {
+        background-color: #fff1e6;
+        color: #ff6a00;
+      }
+
+      .email {
+        background-color: #e6efff;
+        color: #2f6de0;
+      }
+
+      .telefono {
+        background-color: #e8f8ed;
+        color: #2e8b57;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      .btn-outline {
+        border: 1px solid #ccc;
+        background-color: white;
+        border-radius: 8px;
+        font-size: 14px;
+        padding: 10px 0;
+        width: 100%;
+        cursor: pointer;
+        font-weight: 600;
+        color: #333;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .soporte {
+    padding: 50px 25px;
+
+    .header h2 {
+      font-size: 24px;
+    }
+
+    .contactos {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+/* === PREGUNTAS FRECUENTES === */
+.faq {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+
+  .faq-container {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    padding: 30px 25px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .faq-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
+
+    .icon {
+      color: #ff6a00;
+      font-size: 20px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1c1c1c;
+    }
+  }
+
+  .faq-item {
+    border-top: 1px solid #f0f0f0;
+    padding: 15px 5px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #fff9f5;
+    }
+
+    .pregunta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      color: #1c1c1c;
+      font-weight: 500;
+
+      .arrow {
+        font-size: 12px;
+        color: #ff6a00;
+      }
+    }
+
+    .respuesta {
+      margin-top: 10px;
+      text-align: left;
+
+      p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+        margin: 0;
+      }
+    }
+
+    &.abierta {
+      background-color: #fff6f0;
+    }
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .faq {
+    .faq-container {
+      padding: 25px 15px;
+    }
+
+    .faq-item {
+      .pregunta {
+        font-size: 14px;
+      }
+
+      .respuesta p {
+        font-size: 13.5px;
+      }
+    }
+  }
+}
+/* === OPCIONES RÁPIDAS + FORMULARIO === */
+.ayuda-extra {
+  margin-top: 60px;
+  padding: 0 30px 80px;
+  text-align: center;
+
+  .opciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+
+    .opcion {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 25px 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .icono {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 22px;
+        margin: 0 auto 10px;
+      }
+
+      .pago {
+        background-color: #fff3e6;
+        color: #ff6a00;
+      }
+
+      .seguimiento {
+        background-color: #e8f0ff;
+        color: #3772ff;
+      }
+
+      .envio {
+        background-color: #e6f9ec;
+        color: #2e8b57;
+      }
+
+      .devolucion {
+        background-color: #f6e8ff;
+        color: #8a2be2;
+      }
+
+      h4 {
+        margin: 5px 0;
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 13.5px;
+        color: #555;
+      }
+    }
+  }
+
+  .contacto-form {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 30px 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    form {
+      .fila {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .campo {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        label {
+          font-size: 13.5px;
+          font-weight: 500;
+          margin-bottom: 5px;
+          color: #333;
+        }
+
+        input,
+        textarea {
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 10px 12px;
+          font-size: 14px;
+          font-family: inherit;
+          transition: 0.3s;
+
+          &:focus {
+            outline: none;
+            border-color: #ff6a00;
+            box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+          }
+        }
+      }
+
+      .btn-enviar {
+        background-color: #ff6a00;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 22px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: #e85f00;
+        }
+      }
+    }
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .ayuda-extra {
+    .opciones {
+      grid-template-columns: 1fr;
+    }
+
+    .contacto-form {
+      padding: 20px;
+    }
+  }
+}

@@ -1,0 +1,126 @@
+<section class="soporte">
+  <div class="header">
+    <h2>Centro de Ayuda</h2>
+    <p>
+      Estamos aquí para ayudarte. Encuentra respuestas o contáctanos directamente.
+    </p>
+  </div>
+
+  <div class="contactos">
+    <!-- WhatsApp -->
+    <div class="card">
+      <div class="icono whatsapp">
+        💬
+      </div>
+      <h3>WhatsApp</h3>
+      <p>Respuesta rápida en horario laboral</p>
+      <button class="btn-outline">Abrir Chat</button>
+    </div>
+
+    <!-- Email -->
+    <div class="card">
+      <div class="icono email">
+        ✉️
+      </div>
+      <h3>Email</h3>
+      <p>Respuesta en 24 horas</p>
+      <button class="btn-outline">Enviar Email</button>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="card">
+      <div class="icono telefono">
+        📞
+      </div>
+      <h3>Teléfono</h3>
+      <p>Lun-Vie 9:00 - 18:00</p>
+      <button class="btn-outline">+591 71708041</button>
+    </div>
+  </div>
+</section>
+<!-- === PREGUNTAS FRECUENTES === -->
+<section class="faq">
+  <div class="faq-container">
+    <div class="faq-header">
+      <span class="icon">❓</span>
+      <h3>Preguntas Frecuentes</h3>
+    </div>
+
+    <div class="faq-list">
+      <div
+        class="faq-item"
+        *ngFor="let pregunta of preguntas; let i = index"
+        (click)="togglePregunta(i)"
+        [class.abierta]="pregunta.abierta"
+      >
+        <div class="pregunta">
+          {{ pregunta.titulo }}
+          <span class="arrow">{{ pregunta.abierta ? '▲' : '▼' }}</span>
+        </div>
+
+        <div class="respuesta" *ngIf="pregunta.abierta">
+          <p>{{ pregunta.respuesta }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- === SECCIÓN DE OPCIONES RÁPIDAS === -->
+<section class="ayuda-extra">
+  <div class="opciones">
+    <div class="opcion">
+      <div class="icono pago">💳</div>
+      <h4>Métodos de Pago</h4>
+      <p>Información sobre pagos y facturación</p>
+    </div>
+
+    <div class="opcion">
+      <div class="icono seguimiento">📦</div>
+      <h4>Seguimiento</h4>
+      <p>Rastrea el estado de tu pedido</p>
+    </div>
+
+    <div class="opcion">
+      <div class="icono envio">🚚</div>
+      <h4>Envíos</h4>
+      <p>Costos y tiempos de entrega</p>
+    </div>
+
+    <div class="opcion">
+      <div class="icono devolucion">🔁</div>
+      <h4>Devoluciones</h4>
+      <p>Política de devoluciones y cambios</p>
+    </div>
+  </div>
+
+  <!-- === FORMULARIO DE CONTACTO === -->
+  <div class="contacto-form">
+    <h4>¿No encontraste lo que buscabas?</h4>
+    <p>Envíanos un mensaje y te responderemos lo antes posible.</p>
+
+    <form (submit)="enviarMensaje($event)">
+      <div class="fila">
+        <div class="campo">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre completo" required />
+        </div>
+        <div class="campo">
+          <label>Email</label>
+          <input type="email" placeholder="tu@email.com" required />
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Asunto</label>
+        <input type="text" placeholder="¿En qué podemos ayudarte?" required />
+      </div>
+
+      <div class="campo">
+        <label>Mensaje</label>
+        <textarea placeholder="Describe tu consulta o problema..." rows="3" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+    </form>
+  </div>
+</section>

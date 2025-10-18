@@ -1,0 +1,90 @@
+<!-- SECCIÓN HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="badge">
+        <span class="icon">🟡</span>
+        Autenticidad Garantizada
+      </div>
+
+      <h1>
+        Artesanías Bolivianas <br />
+        <span>Auténticas y Únicas</span>
+      </h1>
+
+      <p class="description">
+        Conectamos directamente con artesanos bolivianos. Cada compra cuenta una historia,
+        cada pieza es única y cada artesano recibe un precio justo.
+      </p>
+
+      <div class="buttons">
+        <button class="explore">Explorar Catálogo</button>
+        <button class="sell">Vender como Artesano</button>
+      </div>
+
+      <div class="stats">
+        <div><strong>500+</strong><br />Artesanos</div>
+        <div><strong>2000+</strong><br />Productos</div>
+        <div><strong>100%</strong><br />Auténtico</div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="image-box">
+        <img src="assets/imagenes/hero-artesania.jpg" alt="Artesanías Bolivianas" />
+        <div class="trust">
+          <span>✅</span>
+          <div>
+            <strong>Trazabilidad</strong><br />
+            Verificada 100%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN CATÁLOGO -->
+<section class="catalogo">
+  <div class="catalogo-container">
+    <h2>Explora Nuestras Artesanías</h2>
+    <p>Cada pieza cuenta una historia única</p>
+
+    <!-- Filtros dinámicos -->
+    <div class="filtros">
+      <button
+        *ngFor="let cat of categorias"
+        [class.activo]="categoriaSeleccionada === cat"
+        (click)="seleccionarCategoria(cat)">
+        {{ cat }}
+      </button>
+    </div>
+
+    <!-- Grid de productos dinámico -->
+    <div class="grid-productos" [@listaAnimada]="categoriaSeleccionada">
+      <div class="card" *ngFor="let p of productosFiltrados">
+      <div class="imagen">
+          <img [src]="p.imagen" [alt]="p.nombre">
+          <span *ngIf="p.etiqueta"
+                class="etiqueta"
+                [ngClass]="{'nuevo': p.etiqueta === 'Nuevo', 'descuento': p.etiqueta === 'Descuento'}">
+            {{ p.etiqueta }}
+          </span>
+        </div>
+
+        <div class="contenido">
+          <h3>{{ p.nombre }}</h3>
+          <p>{{ p.descripcion }}</p>
+
+          <div class="info">
+            <span class="ubicacion">📍 {{ p.ubicacion }}</span>
+            <div class="precio">
+              <span>Bs {{ p.precio }}</span>
+              <button class="carrito">🛒</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
