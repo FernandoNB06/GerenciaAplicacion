@@ -1,0 +1,93 @@
+.registro-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.steps div {
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+  border-bottom: 3px solid #ccc;
+  font-weight: 500;
+}
+
+.steps .active {
+  color: #ff6600;
+  border-color: #ff6600;
+}
+
+.step-content {
+  animation: fade 0.4s ease-in-out;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, select, textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #e05500;
+}
+
+.plans {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.plan.active {
+  border-color: #ff6600;
+  background: #fff4ec;
+}

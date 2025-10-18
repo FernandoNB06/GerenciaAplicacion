@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { CarritoService } from '../../services/carrito.service';
+import { RouterModule } from '@angular/router';
 
 
 interface Producto {
@@ -17,7 +19,7 @@ interface Producto {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
@@ -35,6 +37,7 @@ interface Producto {
     ]
 })
 export class HomeComponent {
+  constructor(private carritoService: CarritoService) {}
   categorias: string[] = ['Todos', 'Textiles', 'Cerámica', 'Joyería', 'Artesanía', 'Cuero', 'Madera'];
   categoriaSeleccionada: string = 'Todos';
 
@@ -96,5 +99,16 @@ export class HomeComponent {
   get productosFiltrados(): Producto[] {
     if (this.categoriaSeleccionada === 'Todos') return this.productos;
     return this.productos.filter(p => p.categoria === this.categoriaSeleccionada);
+  }
+
+agregarAlCarrito(p: any) {
+    this.carritoService.agregarProducto({
+      id: p.id,
+      nombre: p.nombre,
+      precio: p.precio,
+      imagen: p.imagen,
+      cantidad: 1
+    });
+    alert(`🛒 ${p.nombre} agregado al carrito`);
   }
 }

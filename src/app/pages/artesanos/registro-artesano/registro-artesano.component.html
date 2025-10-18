@@ -1,0 +1,128 @@
+<div class="registro-container">
+
+  <!-- 🔹 Encabezado de pasos -->
+  <div class="steps">
+    <div [class.active]="paso === 1">1. Información Personal</div>
+    <div [class.active]="paso === 2">2. Tu Artesanía</div>
+    <div [class.active]="paso === 3">3. Plan y Confirmación</div>
+  </div>
+
+  <!-- 🔹 Paso 1 -->
+  <div *ngIf="paso === 1" class="step-content">
+    <h2>Información Personal</h2>
+    <p>Cuéntanos sobre ti para crear tu perfil de artesano</p>
+
+    <form>
+      <label>Nombre Completo *</label>
+      <input type="text" [(ngModel)]="artesano.nombre" name="nombre" placeholder="Ej: María Condori" required>
+
+      <label>Correo Electrónico *</label>
+      <input type="email" [(ngModel)]="artesano.correo" name="correo" placeholder="tu@email.com" required>
+
+      <label>Teléfono / WhatsApp *</label>
+      <input type="text" [(ngModel)]="artesano.telefono" name="telefono" placeholder="+591 7XXXXXXX" required>
+
+      <label>Departamento *</label>
+      <select [(ngModel)]="artesano.departamento" name="departamento" required>
+        <option value="">Selecciona departamento</option>
+        <option>Cochabamba</option>
+        <option>La Paz</option>
+        <option>Santa Cruz</option>
+        <option>Oruro</option>
+        <option>Potosí</option>
+        <option>Chuquisaca</option>
+        <option>Tarija</option>
+        <option>Beni</option>
+        <option>Pando</option>
+      </select>
+
+      <label>Ciudad / Comunidad *</label>
+      <input type="text" [(ngModel)]="artesano.ciudad" name="ciudad" placeholder="Ej: El Alto" required>
+    </form>
+
+    <div class="buttons">
+      <button (click)="siguiente()">Siguiente</button>
+    </div>
+  </div>
+
+  <!-- 🔹 Paso 2 -->
+  <div *ngIf="paso === 2" class="step-content">
+    <h2>Tu Artesanía</h2>
+    <p>Cuéntanos sobre tu trabajo artesanal y experiencia</p>
+
+    <form>
+      <label>Especialidad *</label>
+      <select [(ngModel)]="artesano.especialidad" name="especialidad" required>
+        <option value="">Selecciona tu especialidad</option>
+        <option>Textiles</option>
+        <option>Cerámica</option>
+        <option>Joyería</option>
+        <option>Madera</option>
+        <option>Cuero</option>
+        <option>Metales</option>
+      </select>
+
+      <label>Años de Experiencia *</label>
+      <select [(ngModel)]="artesano.experiencia" name="experiencia" required>
+        <option value="">Selecciona tu experiencia</option>
+        <option>Menos de 1 año</option>
+        <option>1 - 3 años</option>
+        <option>4 - 7 años</option>
+        <option>Más de 7 años</option>
+      </select>
+
+      <label>Tu Historia *</label>
+      <textarea [(ngModel)]="artesano.historia" name="historia"
+                placeholder="Cuéntanos sobre tu trabajo, técnicas, tradición familiar..." required></textarea>
+    </form>
+
+    <div class="buttons">
+      <button (click)="atras()">Atrás</button>
+      <button (click)="siguiente()">Siguiente</button>
+    </div>
+  </div>
+
+  <!-- 🔹 Paso 3 -->
+  <div *ngIf="paso === 3" class="step-content">
+    <h2>Plan y Confirmación</h2>
+    <p>Elige el plan que mejor se adapte a tus necesidades</p>
+
+    <div class="plans">
+      <label class="plan" [class.active]="artesano.plan === 'basico'">
+        <input type="radio" [(ngModel)]="artesano.plan" name="plan" value="basico">
+        <b>Plan Básico</b> (Gratis)
+        <ul>
+          <li>Hasta 15 productos</li>
+          <li>Comisión 5% por venta</li>
+          <li>Capacitación inicial gratis</li>
+        </ul>
+      </label>
+
+      <label class="plan" [class.active]="artesano.plan === 'estandar'">
+        <input type="radio" [(ngModel)]="artesano.plan" name="plan" value="estandar">
+        <b>Plan Estándar</b> (Bs 80/mes)
+        <ul>
+          <li>Productos ilimitados</li>
+          <li>Comisión reducida al 3%</li>
+          <li>Estadísticas de ventas</li>
+        </ul>
+      </label>
+
+      <label class="plan" [class.active]="artesano.plan === 'premium'">
+        <input type="radio" [(ngModel)]="artesano.plan" name="plan" value="premium">
+        <b>Plan Premium</b> (Bs 150/mes)
+        <ul>
+          <li>Productos ilimitados y destacados</li>
+          <li>Comisión del 1%</li>
+          <li>Invitaciones a ferias</li>
+        </ul>
+      </label>
+    </div>
+
+    <div class="buttons">
+      <button (click)="atras()">Atrás</button>
+      <button (click)="completarRegistro()">Completar Registro</button>
+    </div>
+  </div>
+
+</div>

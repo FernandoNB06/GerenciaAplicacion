@@ -19,7 +19,10 @@
 
       <div class="buttons">
         <button class="explore">Explorar Catálogo</button>
-        <button class="sell">Vender como Artesano</button>
+        <button routerLink="/registro-artesano" class="btn btn-outline-dark">
+          Vender como Artesano
+        </button>
+
       </div>
 
       <div class="stats">
@@ -80,7 +83,8 @@
             <span class="ubicacion">📍 {{ p.ubicacion }}</span>
             <div class="precio">
               <span>Bs {{ p.precio }}</span>
-              <button class="carrito">🛒</button>
+              <button class="carrito" (click)="agregarAlCarrito(p)">🛒</button>
+
             </div>
           </div>
         </div>

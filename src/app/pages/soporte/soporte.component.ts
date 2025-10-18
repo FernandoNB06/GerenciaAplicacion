@@ -26,7 +26,7 @@ export class SoporteComponent {
     },
     {
       titulo: '¿Cuánto tarda la entrega?',
-      respuesta: 'Los envíos nacionales tardan entre 3 a 7 días hábiles dependiendo de tu ubicación.'
+      respuesta: 'Las entregas en el Cercado se realizan en 1-3 días hábiles. Para otros municipios, el tiempo puede variar entre 3-7 días dependiendo de la ubicación.'
     },
     {
       titulo: '¿Puedo devolver un producto?',
