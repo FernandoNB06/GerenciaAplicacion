@@ -18,7 +18,10 @@
         <li>✅ Soporte estándar vía WhatsApp/chat</li>
         <li>✅ Perfil de artesano verificado</li>
       </ul>
-      <button class="btn-outline">Comenzar Gratis</button>
+      <button class="btn-outline"
+              (click)="abrirModal('Básico','Bs 0','Ideal para iniciar tu presencia digital')">
+        Comenzar Gratis
+      </button>
     </div>
 
     <!-- Plan Estándar -->
@@ -35,7 +38,10 @@
         <li>✅ Participación en promociones colectivas</li>
         <li>✅ Soporte prioritario en pagos</li>
       </ul>
-      <button class="btn-primary">Seleccionar Plan</button>
+      <button class="btn-primary"
+              (click)="abrirModal('Estándar','Bs 80 /mes','Ideal para artesanos que venden constantemente')">
+        Seleccionar Plan
+      </button>
     </div>
 
     <!-- Plan Premium -->
@@ -53,7 +59,10 @@
         <li>✅ Invitación a 2 ferias urbanas/año</li>
         <li>✅ Acompañamiento personalizado</li>
       </ul>
-      <button class="btn-primary">Seleccionar Plan</button>
+      <button class="btn-primary"
+              (click)="abrirModal('Premium','Bs 150 /mes','Plan completo para expandir tu marca artesanal')">
+        Seleccionar Plan
+      </button>
     </div>
 
   </div>
@@ -81,3 +90,64 @@
     </div>
   </div>
 </section>
+<!-- === MODAL LOGIN / REGISTRO === -->
+<div class="modal-overlay" *ngIf="modalAbierto" (click)="cerrarModal()"></div>
+
+<div class="modal" *ngIf="modalAbierto">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="cerrar" (click)="cerrarModal()">✕</button>
+
+    <h2>Cuenta de Artesano</h2>
+    <p class="sub">Crea tu cuenta y empieza a vender tus productos al mundo</p>
+
+    <!-- Info plan -->
+    <div class="plan-resumen" *ngIf="planSeleccionado">
+      <p><strong>Plan:</strong> {{ planSeleccionado.nombre }}</p>
+      <p><strong>Precio:</strong> {{ planSeleccionado.precio }}</p>
+      <p class="desc">{{ planSeleccionado.descripcion }}</p>
+    </div>
+
+    <div class="tabs">
+      <button [class.active]="!modoRegistro" (click)="modoRegistro = false">Iniciar Sesión</button>
+      <button [class.active]="modoRegistro" (click)="modoRegistro = true">Registrarse</button>
+    </div>
+
+    <!-- FORM LOGIN -->
+    <form *ngIf="!modoRegistro && !suscripcionExitosa" class="form">
+      <label>Correo Electrónico</label>
+      <input type="email" placeholder="tu@email.com" />
+      <label>Contraseña</label>
+      <input type="password" placeholder="********" />
+      <button type="button" class="btn-primary" (click)="confirmarSuscripcion()">Iniciar Sesión</button>
+      <p class="texto-cambio">
+        ¿No tienes cuenta?
+        <span (click)="cambiarModo()">Regístrate aquí</span>
+      </p>
+    </form>
+
+    <!-- FORM REGISTRO -->
+    <form *ngIf="modoRegistro && !suscripcionExitosa" class="form">
+      <label>Nombre del Taller o Artesano</label>
+      <input type="text" placeholder="Ej. Manos Andinas" />
+      <label>Correo Electrónico</label>
+      <input type="email" placeholder="tu@email.com" />
+      <label>Contraseña</label>
+      <input type="password" placeholder="********" />
+      <label>Confirmar Contraseña</label>
+      <input type="password" placeholder="********" />
+      <button type="button" class="btn-primary" (click)="confirmarSuscripcion()">Crear Cuenta</button>
+      <p class="texto-cambio">
+        ¿Ya tienes cuenta?
+        <span (click)="cambiarModo()">Inicia sesión</span>
+      </p>
+    </form>
+
+    <!-- MENSAJE ÉXITO -->
+    <div class="exito" *ngIf="suscripcionExitosa">
+      <div class="icono">✅</div>
+      <h3>¡Registro Exitoso!</h3>
+      <p>Bienvenido al plan <strong>{{ planSeleccionado?.nombre }}</strong>.</p>
+      <p>Empieza a compartir tu arte con el mundo 🌎</p>
+    </div>
+  </div>
+</div>

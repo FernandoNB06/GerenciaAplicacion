@@ -5,7 +5,6 @@
   </div>
 
   <div class="planes-container">
-
     <!-- Plan Básico -->
     <div class="plan-card">
       <h3>Básico</h3>
@@ -16,7 +15,10 @@
         <li>✅ Soporte post venta vía WhatsApp</li>
         <li>✅ Políticas de devolución gratuita</li>
       </ul>
-      <button class="btn-outline">Comenzar Gratis</button>
+      <button class="btn-outline"
+              (click)="abrirModal('Básico','Bs 0','Acceso libre al catálogo completo')">
+        Comenzar Gratis
+      </button>
     </div>
 
     <!-- Plan Frecuente -->
@@ -24,10 +26,7 @@
       <h3>Frecuente</h3>
       <h1>Bs 25 <span>/mes</span></h1>
       <p class="nota">o Bs 250 al año (2 meses gratis)</p>
-
-      <div class="badge-descuento">
-        Descuento en compras <strong>3%</strong>
-      </div>
+      <div class="badge-descuento">Descuento en compras <strong>3%</strong></div>
 
       <ul>
         <li>✅ 3% de descuento en todas las compras</li>
@@ -36,7 +35,10 @@
         <li>✅ Envíos con tarifa preferencial (Bs 10)</li>
         <li>✅ Acumulación de puntos canjeables</li>
       </ul>
-      <button class="btn-primary">Seleccionar Plan</button>
+      <button class="btn-primary"
+              (click)="abrirModal('Frecuente','Bs 25 /mes','Descuento del 3% y beneficios exclusivos')">
+        Seleccionar Plan
+      </button>
     </div>
 
     <!-- Plan Premium -->
@@ -44,10 +46,7 @@
       <h3>Premium</h3>
       <h1>Bs 50 <span>/mes</span></h1>
       <p class="nota">o Bs 500 al año (2 meses gratis)</p>
-
-      <div class="badge-descuento premium">
-        Descuento en compras <strong>10%</strong>
-      </div>
+      <div class="badge-descuento premium">Descuento en compras <strong>10%</strong></div>
 
       <ul>
         <li>✅ 10% de descuento en productos seleccionados</li>
@@ -56,8 +55,72 @@
         <li>✅ Experiencias culturales digitales exclusivas</li>
         <li>✅ Soporte prioritario 24/7</li>
       </ul>
-      <button class="btn-primary">Seleccionar Plan</button>
+      <button class="btn-primary"
+              (click)="abrirModal('Premium','Bs 50 /mes','Acceso anticipado y soporte prioritario')">
+        Seleccionar Plan
+      </button>
     </div>
-
   </div>
 </section>
+
+<!-- ========== MODAL LOGIN / REGISTRO ========== -->
+<div class="modal-overlay" *ngIf="modalAbierto" (click)="cerrarModal()"></div>
+
+<div class="modal" *ngIf="modalAbierto">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="cerrar" (click)="cerrarModal()">✕</button>
+
+    <h2>Cuenta de Comprador</h2>
+    <p class="sub">Accede a tu cuenta para disfrutar de beneficios exclusivos</p>
+
+    <!-- 🧾 Info del plan seleccionado -->
+    <div class="plan-resumen" *ngIf="planSeleccionado">
+      <p><strong>Plan:</strong> {{ planSeleccionado.nombre }}</p>
+      <p><strong>Precio:</strong> {{ planSeleccionado.precio }}</p>
+      <p class="desc">{{ planSeleccionado.descripcion }}</p>
+    </div>
+
+    <div class="tabs">
+      <button [class.active]="!modoRegistro" (click)="modoRegistro = false">Iniciar Sesión</button>
+      <button [class.active]="modoRegistro" (click)="modoRegistro = true">Registrarse</button>
+    </div>
+
+    <!-- FORM LOGIN -->
+    <form *ngIf="!modoRegistro && !suscripcionExitosa" class="form">
+      <label>Correo Electrónico</label>
+      <input type="email" placeholder="tu@email.com" />
+      <label>Contraseña</label>
+      <input type="password" placeholder="********" />
+      <button type="button" class="btn-primary" (click)="confirmarSuscripcion()">Iniciar Sesión</button>
+      <p class="texto-cambio">
+        ¿No tienes cuenta?
+        <span (click)="cambiarModo()">Regístrate aquí</span>
+      </p>
+    </form>
+
+    <!-- FORM REGISTRO -->
+    <form *ngIf="modoRegistro && !suscripcionExitosa" class="form">
+      <label>Nombre Completo</label>
+      <input type="text" placeholder="Tu nombre" />
+      <label>Correo Electrónico</label>
+      <input type="email" placeholder="tu@email.com" />
+      <label>Contraseña</label>
+      <input type="password" placeholder="********" />
+      <label>Confirmar Contraseña</label>
+      <input type="password" placeholder="********" />
+      <button type="button" class="btn-primary" (click)="confirmarSuscripcion()">Crear Cuenta</button>
+      <p class="texto-cambio">
+        ¿Ya tienes cuenta?
+        <span (click)="cambiarModo()">Inicia sesión</span>
+      </p>
+    </form>
+
+    <!-- ✅ MENSAJE DE ÉXITO -->
+    <div class="exito" *ngIf="suscripcionExitosa">
+      <div class="icono">✅</div>
+      <h3>¡Suscripción Exitosa!</h3>
+      <p>Te has suscrito al plan <strong>{{ planSeleccionado?.nombre }}</strong>.</p>
+      <p>Disfruta de tus beneficios exclusivos 🎉</p>
+    </div>
+  </div>
+</div>
