@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-artesano',
@@ -12,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 export class RegistroArtesanoComponent {
   paso = 1;
 
-  // datos simulados
   artesano = {
     nombre: '',
     correo: '',
@@ -22,8 +22,10 @@ export class RegistroArtesanoComponent {
     especialidad: '',
     experiencia: '',
     historia: '',
-    plan: 'basico'
+    plan: ''
   };
+
+  constructor(private router: Router) {}
 
   siguiente() {
     if (this.paso < 3) this.paso++;
@@ -34,6 +36,10 @@ export class RegistroArtesanoComponent {
   }
 
   completarRegistro() {
-    alert('✅ Registro completado con éxito');
+    // ✅ Aquí podrías guardar los datos en backend más adelante
+    alert('✅ Registro completado correctamente.');
+
+    // 🚀 Redirigir al dashboard
+    this.router.navigate(['/dashboard-artesano']);
   }
 }

@@ -1,0 +1,104 @@
+<section class="dashboard-artesano">
+  <h2>Dashboard de Artesano</h2>
+  <p class="sub">Gestiona tus productos y ventas</p>
+
+  <!-- === MÉTRICAS === -->
+  <div class="metricas">
+    <div class="card">
+      <div class="icon">$</div>
+      <h3>Ventas Totales</h3>
+      <p class="valor">Bs 12450</p>
+      <span class="detalle">+12% vs mes anterior</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">📦</div>
+      <h3>Productos</h3>
+      <p class="valor">{{ productos.length }}</p>
+      <span class="detalle">Productos registrados</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">👁️</div>
+      <h3>Vistas</h3>
+      <p class="valor">3420</p>
+      <span class="detalle">+8% esta semana</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">📈</div>
+      <h3>Conversión</h3>
+      <p class="valor">4.2%</p>
+      <span class="detalle">+0.5% vs promedio</span>
+    </div>
+  </div>
+
+  <!-- === MIS PRODUCTOS === -->
+  <div class="productos">
+    <div class="header-productos">
+      <h3>Mis Productos</h3>
+      <button class="btn-agregar" (click)="abrirModal()">+ Agregar Producto</button>
+    </div>
+
+    <div class="lista-productos" *ngIf="productos.length > 0; else vacio">
+      <div class="producto-card" *ngFor="let p of productos">
+        <img [src]="p.imagen" alt="{{ p.nombre }}" />
+        <div class="info">
+          <h4>{{ p.nombre }}</h4>
+          <p>{{ p.descripcion }}</p>
+          <div class="detalles">
+            <span><strong>Precio:</strong> Bs {{ p.precio }}</span>
+            <span><strong>Stock:</strong> {{ p.stock }} unidades</span>
+            <span class="tag">{{ p.categoria }}</span>
+            <span *ngIf="p.destacado" class="tag destacado">Destacado</span>
+          </div>
+        </div>
+        <div class="acciones">
+          <button class="edit" (click)="editarProducto(p.nombre)">✏️</button>
+          <button class="delete" (click)="eliminarProducto(p.nombre)">🗑️</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #vacio>
+      <p class="no-productos">Aún no has registrado productos.</p>
+    </ng-template>
+  </div>
+</section>
+
+<!-- === MODAL DE NUEVO PRODUCTO === -->
+<div class="modal-overlay" *ngIf="modalAbierto" (click)="cerrarModal()"></div>
+
+<div class="modal" *ngIf="modalAbierto">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="cerrar" (click)="cerrarModal()">✕</button>
+    <h3>Agregar Nuevo Producto</h3>
+
+    <form (ngSubmit)="agregarProducto()" #formProducto="ngForm">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="nuevoProducto.nombre" name="nombre" required />
+
+      <label>Descripción</label>
+      <textarea [(ngModel)]="nuevoProducto.descripcion" name="descripcion" rows="2" required></textarea>
+
+      <label>Precio (Bs)</label>
+      <input type="number" [(ngModel)]="nuevoProducto.precio" name="precio" required />
+
+      <label>Stock</label>
+      <input type="number" [(ngModel)]="nuevoProducto.stock" name="stock" required />
+
+      <label>Categoría</label>
+      <input type="text" [(ngModel)]="nuevoProducto.categoria" name="categoria" required />
+
+      <label>Imagen (URL opcional)</label>
+      <input type="text" [(ngModel)]="nuevoProducto.imagen" name="imagen" />
+
+      <label class="destacado">
+        <input type="checkbox" [(ngModel)]="nuevoProducto.destacado" name="destacado" />
+        Marcar como destacado
+      </label>
+
+      <button type="submit" class="btn-guardar">Guardar Producto</button>
+    </form>
+  </div>
+</div>

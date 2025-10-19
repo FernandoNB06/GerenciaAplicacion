@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface Plan {
   nombre: string;
@@ -19,6 +20,8 @@ export class ArtesanosComponent {
   modoRegistro = false;
   planSeleccionado: Plan | null = null;
   suscripcionExitosa = false;
+
+  constructor(private router: Router) {}
 
   abrirModal(nombre: string, precio: string, descripcion: string): void {
     this.planSeleccionado = { nombre, precio, descripcion };
@@ -40,9 +43,12 @@ export class ArtesanosComponent {
 
   confirmarSuscripcion(): void {
     this.suscripcionExitosa = true;
+
+    // Mostrar mensaje de éxito breve y redirigir
     setTimeout(() => {
       this.cerrarModal();
-      alert(`✅ Te has suscrito al plan ${this.planSeleccionado?.nombre} como artesano.`);
+      alert(`✅ Te has registrado en el plan ${this.planSeleccionado?.nombre}.`);
+      this.router.navigate(['/dashboard-artesano']); // 🚀 Redirigir al dashboard
     }, 1500);
   }
 }
