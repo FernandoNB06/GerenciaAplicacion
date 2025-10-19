@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './registro-artesano.component.html',
   styleUrls: ['./registro-artesano.component.scss']
 })
-export class RegistroArtesanoComponent {
+export class RegistroArtesanoComponent implements OnInit {
   paso = 1;
 
   artesano = {
@@ -27,6 +27,14 @@ export class RegistroArtesanoComponent {
 
   constructor(private router: Router) {}
 
+  // ✅ Si ya está logueado, redirigir directo al dashboard
+  ngOnInit(): void {
+    const logueado = localStorage.getItem('artesanoLogueado');
+    if (logueado === 'true') {
+      this.router.navigate(['/dashboard-artesano']);
+    }
+  }
+
   siguiente() {
     if (this.paso < 3) this.paso++;
   }
@@ -36,8 +44,10 @@ export class RegistroArtesanoComponent {
   }
 
   completarRegistro() {
-    // ✅ Aquí podrías guardar los datos en backend más adelante
     alert('✅ Registro completado correctamente.');
+
+    // 🟢 Guardar el estado de sesión
+    localStorage.setItem('artesanoLogueado', 'true');
 
     // 🚀 Redirigir al dashboard
     this.router.navigate(['/dashboard-artesano']);

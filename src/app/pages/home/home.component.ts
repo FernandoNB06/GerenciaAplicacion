@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { CarritoService } from '../../services/carrito.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 interface Artesano {
   nombre: string;
@@ -44,7 +44,7 @@ interface Producto {
   ]
 })
 export class HomeComponent {
-  constructor(private carritoService: CarritoService) {}
+  constructor(private carritoService: CarritoService, private router: Router) {}
 
   categorias: string[] = ['Todos', 'Textiles', 'Cerámica', 'Joyería', 'Artesanía', 'Cuero', 'Madera'];
   categoriaSeleccionada: string = 'Todos';
@@ -130,7 +130,6 @@ export class HomeComponent {
     }
   ];
 
-
   productoSeleccionado: Producto | null = null;
 
   seleccionarCategoria(categoria: string) {
@@ -161,5 +160,18 @@ export class HomeComponent {
   cerrarDetalle() {
     this.productoSeleccionado = null;
     document.body.style.overflow = 'auto';
+  }
+
+  // 🔹 NUEVO: lógica para botón "Vender como Artesano"
+  irAVenderComoArtesano() {
+    const logueado = localStorage.getItem('artesanoLogueado');
+
+    if (logueado === 'true') {
+      // 🚀 Ya está logueado, redirige al dashboard
+      this.router.navigate(['/dashboard-artesano']);
+    } else {
+      // 🟠 No está logueado, redirige al formulario
+      this.router.navigate(['/registro-artesano']);
+    }
   }
 }

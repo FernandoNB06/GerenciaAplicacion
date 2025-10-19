@@ -24,6 +24,14 @@ export class ArtesanosComponent {
   constructor(private router: Router) {}
 
   abrirModal(nombre: string, precio: string, descripcion: string): void {
+    const logueado = localStorage.getItem('artesanoLogueado');
+    if (logueado === 'true') {
+      // 🚀 Ya está logueado → va directo al dashboard
+      this.router.navigate(['/dashboard-artesano']);
+      return;
+    }
+
+    // 🟢 Si no está logueado → abrir el modal normal
     this.planSeleccionado = { nombre, precio, descripcion };
     this.modalAbierto = true;
     document.body.style.overflow = 'hidden';
@@ -44,11 +52,15 @@ export class ArtesanosComponent {
   confirmarSuscripcion(): void {
     this.suscripcionExitosa = true;
 
-    // Mostrar mensaje de éxito breve y redirigir
     setTimeout(() => {
       this.cerrarModal();
       alert(`✅ Te has registrado en el plan ${this.planSeleccionado?.nombre}.`);
-      this.router.navigate(['/dashboard-artesano']); // 🚀 Redirigir al dashboard
+
+      // 🟢 Guardamos el estado de login en localStorage
+      localStorage.setItem('artesanoLogueado', 'true');
+      localStorage.setItem('nombreArtesano', 'Artesano Nuevo'); // 👈 importante para el dashboard
+
+      this.router.navigate(['/dashboard-artesano']);
     }, 1500);
   }
 }

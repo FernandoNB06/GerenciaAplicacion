@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 interface Producto {
   id: number;
@@ -20,7 +21,7 @@ interface Producto {
   templateUrl: './dashboard-artesano.component.html',
   styleUrls: ['./dashboard-artesano.component.scss']
 })
-export class DashboardArtesanoComponent {
+export class DashboardArtesanoComponent implements OnInit {
   productos: Producto[] = [
     {
       id: 1,
@@ -47,6 +48,7 @@ export class DashboardArtesanoComponent {
   ];
 
   modalAbierto = false;
+  nombreArtesano: string = ''; // 🟢 Nuevo: saludo personalizado
 
   nuevoProducto: Producto = {
     id: 0,
@@ -58,6 +60,29 @@ export class DashboardArtesanoComponent {
     destacado: false,
     imagen: ''
   };
+
+  constructor(private router: Router) {}
+
+  // === Al iniciar: leer nombre y validar sesión ===
+ ngOnInit(): void {
+   const logueado = localStorage.getItem('artesanoLogueado');
+   this.nombreArtesano = localStorage.getItem('nombreArtesano') || 'Artesano';
+
+   if (logueado !== 'true') {
+     // 🚫 No está logueado → fuera
+     this.router.navigate(['/']);
+   }
+ }
+
+
+  // === Cerrar Sesión ===
+  cerrarSesion(): void {
+    if (confirm('¿Seguro que deseas cerrar sesión?')) {
+      localStorage.removeItem('artesanoLogueado');
+      localStorage.removeItem('nombreArtesano');
+      this.router.navigate(['/']);
+    }
+  }
 
   // === Abrir/Cerrar Modal ===
   abrirModal() {

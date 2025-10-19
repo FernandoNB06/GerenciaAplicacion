@@ -292,3 +292,33 @@
     transform: translate(-50%, -50%);
   }
 }
+.header-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .bienvenida {
+    font-size: 18px;
+    font-weight: 500;
+
+    strong {
+      color: #ff4d00;
+    }
+  }
+
+  .btn-cerrar {
+    background: #ff4d00;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+
+    &:hover {
+      background: #e04300;
+    }
+  }
+}
