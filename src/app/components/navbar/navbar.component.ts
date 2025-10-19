@@ -13,6 +13,8 @@ import { CarritoService, ProductoCarrito } from '../../services/carrito.service'
 export class NavbarComponent implements OnInit {
   carritoAbierto = false;
   productosCarrito: ProductoCarrito[] = [];
+  nombreUsuario: string | null = null;
+  tipoUsuario: string | null = null;
 
   constructor(
     private carritoService: CarritoService,
@@ -23,9 +25,21 @@ export class NavbarComponent implements OnInit {
     this.carritoService.productos$.subscribe(productos => {
       this.productosCarrito = productos;
     });
+
+    // 🧠 Detectar quién está logueado y su nombre
+    const artesano = localStorage.getItem('artesanoLogueado') === 'true';
+    const comprador = localStorage.getItem('compradorLogueado') === 'true';
+
+    if (artesano) {
+      this.nombreUsuario = localStorage.getItem('nombreArtesano') || 'Artesano';
+      this.tipoUsuario = 'artesano';
+    } else if (comprador) {
+      this.nombreUsuario = localStorage.getItem('nombreComprador') || 'Comprador';
+      this.tipoUsuario = 'comprador';
+    }
   }
 
-  // 🛒 --- FUNCIONES DEL CARRITO ---
+  // 🛒 CARRITO
   toggleCarrito() {
     this.carritoAbierto = !this.carritoAbierto;
   }
@@ -61,28 +75,21 @@ export class NavbarComponent implements OnInit {
     this.carritoService.vaciarCarrito();
   }
 
-  // 👤 --- PERFIL SEGÚN TIPO DE USUARIO ---
-    // 👤 --- PERFIL SEGÚN TIPO DE USUARIO ---
-    irPerfil(): void {
-      const artesano = localStorage.getItem('artesanoLogueado');
-      const comprador = localStorage.getItem('compradorLogueado');
+  // 👤 PERFIL SEGÚN TIPO DE USUARIO
+  irPerfil(): void {
+    const artesano = localStorage.getItem('artesanoLogueado') === 'true';
+    const comprador = localStorage.getItem('compradorLogueado') === 'true';
 
-      // Convertimos a booleano correctamente
-      const esArtesano = String(artesano).toLowerCase() === 'true';
-      const esComprador = String(comprador).toLowerCase() === 'true';
-
-      if (esArtesano) {
-        console.log('➡ Redirigiendo a perfil-artesano');
-        this.router.navigate(['/perfil-artesano']);
-      } else if (esComprador) {
-        console.log('➡ Redirigiendo a perfil-comprador');
-        this.router.navigate(['/perfil-comprador']);
-      } else {
-        console.log('⚠ No hay sesión activa');
-        alert('Debes iniciar sesión antes de ver tu perfil 🧍‍♂️');
-        this.router.navigate(['/home']);
-      }
+    if (artesano && comprador) {
+      console.warn('⚠ Conflicto: ambos logueados, priorizando artesano');
+      this.router.navigate(['/perfil-artesano']);
+    } else if (artesano) {
+      this.router.navigate(['/perfil-artesano']);
+    } else if (comprador) {
+      this.router.navigate(['/perfil-comprador']);
+    } else {
+      alert('⚠ Debes iniciar sesión antes de ver tu perfil');
+      this.router.navigate(['/']);
     }
-
-
+  }
 }

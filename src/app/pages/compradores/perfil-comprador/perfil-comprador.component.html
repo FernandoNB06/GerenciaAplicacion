@@ -1,1 +1,20 @@
-<p>perfil-comprador works!</p>
+<section class="perfil-container" *ngIf="comprador; else sinDatos">
+  <h2>👤 Perfil del Comprador</h2>
+
+  <div class="perfil-card">
+    <p><strong>Nombre:</strong> {{ comprador.nombre }}</p>
+    <p><strong>Correo:</strong> {{ comprador.email }}</p>
+    <p><strong>Plan:</strong> {{ comprador.plan }} ({{ comprador.precioPlan }})</p>
+    <p><strong>Detalles del plan:</strong> {{ comprador.descripcionPlan }}</p>
+  </div>
+
+
+  <button class="cerrar-sesion" (click)="cerrarSesion()">Cerrar sesión</button>
+</section>
+
+<ng-template #sinDatos>
+  <div class="perfil-vacio">
+    <h3>No hay datos del comprador</h3>
+    <p>Inicia sesión o regístrate para ver tu perfil.</p>
+  </div>
+</ng-template>

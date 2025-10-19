@@ -1,0 +1,22 @@
+<div class="registro-comprador-container">
+  <h2>🛍️ Registro de Comprador</h2>
+  <p>Completa tus datos para crear tu cuenta de comprador</p>
+
+  <form>
+    <label>Nombre Completo *</label>
+    <input type="text" [(ngModel)]="comprador.nombre" name="nombre" placeholder="Ej: Carlos Pérez" required />
+
+    <label>Correo Electrónico *</label>
+    <input type="email" [(ngModel)]="comprador.correo" name="correo" placeholder="tu@email.com" required />
+
+    <label>Teléfono *</label>
+    <input type="text" [(ngModel)]="comprador.telefono" name="telefono" placeholder="+591 7XXXXXXX" required />
+
+    <label>Dirección *</label>
+    <input type="text" [(ngModel)]="comprador.direccion" name="direccion" placeholder="Ej: Av. Blanco Galindo N° 456" required />
+
+    <div class="buttons">
+      <button (click)="registrarComprador()">Registrarme</button>
+    </div>
+  </form>
+</div>

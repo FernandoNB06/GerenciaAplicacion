@@ -353,4 +353,25 @@
     transform: scale(1.1);
   }
 }
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #000;
+
+  i {
+    font-size: 18px;
+  }
+
+  span {
+    font-weight: 500;
+    color: #222;
+  }
+
+  &:hover span {
+    text-decoration: underline;
+  }
+}
 

@@ -23,7 +23,11 @@
     <a routerLink="/soporte" routerLinkActive="active">Soporte</a>
 
     <div class="icons">
-      <i class="bi bi-person" (click)="irPerfil()"></i>
+      <div class="user-info" (click)="irPerfil()">
+        <i class="bi bi-person"></i>
+        <span *ngIf="nombreUsuario">Hola, {{ nombreUsuario }}</span>
+      </div>
+
       <span class="icon-cart" title="Carrito" (click)="toggleCarrito()">🛒</span>
     </div>
   </div>

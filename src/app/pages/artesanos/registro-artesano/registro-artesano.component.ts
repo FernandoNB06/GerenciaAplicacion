@@ -29,11 +29,17 @@ export class RegistroArtesanoComponent implements OnInit {
 
   // ✅ Si ya está logueado, redirigir directo al dashboard
   ngOnInit(): void {
-    const logueado = localStorage.getItem('artesanoLogueado');
-    if (logueado === 'true') {
+    const artesano = localStorage.getItem('artesanoLogueado') === 'true';
+    const comprador = localStorage.getItem('compradorLogueado') === 'true';
+
+    if (comprador) {
+      alert('⚠ Primero cierra tu sesión de comprador antes de registrarte como artesano.');
+      this.router.navigate(['/']);
+    } else if (artesano) {
       this.router.navigate(['/dashboard-artesano']);
     }
   }
+
 
   siguiente() {
     if (this.paso < 3) this.paso++;
