@@ -2,9 +2,14 @@
   <h2>👤 Perfil del Artesano</h2>
 
   <div class="perfil-card">
-    <p><strong>Nombre:</strong> {{ usuario.nombre || usuario.name || 'No especificado' }}</p>
-    <p><strong>Email:</strong> {{ usuario.email || 'No especificado' }}</p>
-    <p><strong>Plan actual:</strong> {{ usuario.plan || 'Sin plan asignado' }}</p>
+    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+    <p><strong>Correo:</strong> {{ usuario.email }}</p>
+    <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+    <p><strong>Departamento:</strong> {{ usuario.departamento }}</p>
+    <p><strong>Ciudad:</strong> {{ usuario.ciudad }}</p>
+    <p><strong>Especialidad:</strong> {{ usuario.especialidad }}</p>
+    <p><strong>Experiencia:</strong> {{ usuario.experiencia }}</p>
+    <p><strong>Plan:</strong> {{ usuario.plan }}</p>
   </div>
 
   <button class="cerrar-sesion" (click)="cerrarSesion()">Cerrar sesión</button>

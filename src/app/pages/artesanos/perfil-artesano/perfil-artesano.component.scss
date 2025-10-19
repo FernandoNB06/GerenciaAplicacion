@@ -1,40 +1,68 @@
 .perfil-container {
-  max-width: 500px;
-  margin: 50px auto;
-  background: #fff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
   font-family: 'Segoe UI', sans-serif;
+  background: #f7f7f7;
+}
 
-  h2 {
+.perfil-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
+  width: 400px;
+  text-align: left;
+
+  .perfil-header {
     text-align: center;
     margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      color: #333;
+    }
+
+    .perfil-sub {
+      font-size: 13px;
+      color: gray;
+      margin-top: 4px;
+    }
   }
 
-  .perfil-card p {
-    font-size: 15px;
+  .perfil-info p {
     margin: 8px 0;
+    font-size: 15px;
+    color: #444;
+
+    strong {
+      color: #000;
+    }
   }
 
   .cerrar-sesion {
-    margin-top: 20px;
-    background: #ff4d00;
+    margin-top: 25px;
+    width: 100%;
+    background: linear-gradient(90deg, #ff6b00, #e84300);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 0;
     border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
 
     &:hover {
-      background: #e04300;
+      background: linear-gradient(90deg, #e84300, #c73700);
+      transform: scale(1.02);
     }
   }
 }
 
 .perfil-vacio {
   text-align: center;
-  margin-top: 100px;
   color: #777;
+  margin-top: 100px;
 }

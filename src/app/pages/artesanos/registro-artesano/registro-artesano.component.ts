@@ -44,12 +44,29 @@ export class RegistroArtesanoComponent implements OnInit {
   }
 
   completarRegistro() {
+    // Validar campos mínimos antes de registrar
+    if (!this.artesano.nombre || !this.artesano.correo || !this.artesano.plan) {
+      alert('⚠️ Por favor completa todos los campos obligatorios antes de continuar.');
+      return;
+    }
+
     alert('✅ Registro completado correctamente.');
 
-    // 🟢 Guardar el estado de sesión
+    // 🟢 Guardar los datos en localStorage
     localStorage.setItem('artesanoLogueado', 'true');
+    localStorage.setItem('nombreArtesano', this.artesano.nombre);
+    localStorage.setItem('emailArtesano', this.artesano.correo);
+    localStorage.setItem('telefonoArtesano', this.artesano.telefono);
+    localStorage.setItem('departamentoArtesano', this.artesano.departamento);
+    localStorage.setItem('ciudadArtesano', this.artesano.ciudad);
+    localStorage.setItem('especialidadArtesano', this.artesano.especialidad);
+    localStorage.setItem('experienciaArtesano', this.artesano.experiencia);
+    localStorage.setItem('historiaArtesano', this.artesano.historia);
+    localStorage.setItem('planArtesano', this.artesano.plan);
+    localStorage.setItem('tipo', 'artesano'); // para distinguir el rol
 
-    // 🚀 Redirigir al dashboard
-    this.router.navigate(['/dashboard-artesano']);
+    // 🚀 Redirigir al perfil directamente
+    this.router.navigate(['/perfil-artesano']);
   }
+
 }
