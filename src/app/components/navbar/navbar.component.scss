@@ -83,7 +83,14 @@
       &:hover {
         text-decoration: underline;
       }
+    &.active {
+          color: #fff;               /* letras blancas */
+          background-color: #000;    /* fondo negro */
+          font-weight: 600;
+          padding: 8px 20px; /* 👈 más espacio alrededor */
+          border-radius: 8px;
     }
+  }
 
     .icons {
       display: flex;
@@ -335,3 +342,4 @@
     }
   }
 }
+

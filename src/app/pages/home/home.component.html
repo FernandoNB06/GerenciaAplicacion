@@ -66,8 +66,8 @@
     <!-- Grid de productos dinámico -->
     <div class="grid-productos" [@listaAnimada]="categoriaSeleccionada">
       <div class="card" *ngFor="let p of productosFiltrados">
-      <div class="imagen">
-          <img [src]="p.imagen" [alt]="p.nombre">
+        <div class="imagen" (click)="verDetalle(p)">
+        <img [src]="p.imagen" [alt]="p.nombre">
           <span *ngIf="p.etiqueta"
                 class="etiqueta"
                 [ngClass]="{'nuevo': p.etiqueta === 'Nuevo', 'descuento': p.etiqueta === 'Descuento'}">
@@ -87,6 +87,45 @@
 
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ==================== MODAL DE DETALLE ==================== -->
+  <div class="modal-overlay" *ngIf="productoSeleccionado" (click)="cerrarDetalle()"></div>
+
+  <div class="modal" *ngIf="productoSeleccionado">
+    <div class="modal-content">
+      <button class="cerrar" (click)="cerrarDetalle()">✕</button>
+
+      <div class="modal-body">
+        <div class="imagen">
+          <img [src]="productoSeleccionado.imagen" alt="{{ productoSeleccionado.nombre }}" />
+          <span *ngIf="productoSeleccionado.etiqueta" class="etiqueta">{{ productoSeleccionado.etiqueta }}</span>
+        </div>
+
+        <div class="detalle">
+          <span class="categoria">{{ productoSeleccionado.categoria }}</span>
+          <h2>{{ productoSeleccionado.nombre }}</h2>
+          <p class="descripcion">{{ productoSeleccionado.descripcion }}</p>
+          <p class="ubicacion">📍 {{ productoSeleccionado.ubicacion }}</p>
+
+          <h3 class="precio">Bs {{ productoSeleccionado.precio }}</h3>
+          <div *ngIf="productoSeleccionado.artesano" class="artesano-box">
+            <p class="creado-por">Creado por:</p>
+            <div class="artesano">
+              <img [src]="productoSeleccionado.artesano.foto" [alt]="productoSeleccionado.artesano.nombre" />
+              <div class="info">
+                <h4>{{ productoSeleccionado.artesano.nombre }}</h4>
+                <p class="ciudad">📍 {{ productoSeleccionado.artesano.ciudad }}</p>
+                <p class="descripcion">"{{ productoSeleccionado.artesano.descripcion }}"</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-agregar" (click)="agregarAlCarrito(productoSeleccionado)">
+            🛒 Agregar al Carrito
+          </button>
         </div>
       </div>
     </div>

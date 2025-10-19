@@ -16,17 +16,18 @@
   </div>
 
   <div class="navbar__right">
-    <a routerLink="/">Explorar</a>
-    <a routerLink="/planes">Planes</a>
-    <a routerLink="/para-artesanos">Para Artesanos</a>
-    <a routerLink="/nosotros">Nosotros</a>
-    <a routerLink="/soporte">Soporte</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Explorar</a>
+    <a routerLink="/planes" routerLinkActive="active">Planes</a>
+    <a routerLink="/para-artesanos" routerLinkActive="active">Para Artesanos</a>
+    <a routerLink="/nosotros" routerLinkActive="active">Nosotros</a>
+    <a routerLink="/soporte" routerLinkActive="active">Soporte</a>
 
     <div class="icons">
       <span class="icon-user" title="Mi cuenta">👤</span>
       <span class="icon-cart" title="Carrito" (click)="toggleCarrito()">🛒</span>
     </div>
   </div>
+
 </nav>
 
 <!-- === PANEL DE CARRITO === -->
