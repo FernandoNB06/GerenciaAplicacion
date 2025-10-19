@@ -6,6 +6,8 @@ import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { SoporteComponent } from './pages/soporte/soporte.component';
 import { RegistroArtesanoComponent } from './pages/artesanos/registro-artesano/registro-artesano.component';
 import { DashboardArtesanoComponent } from './pages/artesanos/dashboard-artesano/dashboard-artesano.component';
+import { PerfilArtesanoComponent } from './pages/artesanos/perfil-artesano/perfil-artesano.component';
+import { PerfilCompradorComponent } from './pages/compradores/perfil-comprador/perfil-comprador.component'; // 👈 nuevo import
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,5 +17,7 @@ export const routes: Routes = [
   { path: 'soporte', component: SoporteComponent },
   { path: 'registro-artesano', component: RegistroArtesanoComponent },
   { path: 'dashboard-artesano', component: DashboardArtesanoComponent },
+  { path: 'perfil-artesano', component: PerfilArtesanoComponent },
+  { path: 'perfil-comprador', component: PerfilCompradorComponent }, // 👈 nueva ruta
   { path: '**', redirectTo: '' }, // SIEMPRE AL FINAL
 ];

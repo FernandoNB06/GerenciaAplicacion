@@ -342,4 +342,15 @@
     }
   }
 }
+.icons i {
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    color: #ff6b00;
+    transform: scale(1.1);
+  }
+}
 

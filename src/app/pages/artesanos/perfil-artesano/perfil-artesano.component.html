@@ -1,0 +1,18 @@
+<section class="perfil-container" *ngIf="usuario; else sinDatos">
+  <h2>👤 Perfil del Artesano</h2>
+
+  <div class="perfil-card">
+    <p><strong>Nombre:</strong> {{ usuario.nombre || usuario.name || 'No especificado' }}</p>
+    <p><strong>Email:</strong> {{ usuario.email || 'No especificado' }}</p>
+    <p><strong>Plan actual:</strong> {{ usuario.plan || 'Sin plan asignado' }}</p>
+  </div>
+
+  <button class="cerrar-sesion" (click)="cerrarSesion()">Cerrar sesión</button>
+</section>
+
+<ng-template #sinDatos>
+  <div class="perfil-vacio">
+    <h3>No hay datos del artesano</h3>
+    <p>Inicia sesión o regístrate para ver tu perfil.</p>
+  </div>
+</ng-template>

@@ -1,0 +1,40 @@
+.perfil-container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-family: 'Segoe UI', sans-serif;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .perfil-card p {
+    font-size: 15px;
+    margin: 8px 0;
+  }
+
+  .cerrar-sesion {
+    margin-top: 20px;
+    background: #ff4d00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background: #e04300;
+    }
+  }
+}
+
+.perfil-vacio {
+  text-align: center;
+  margin-top: 100px;
+  color: #777;
+}

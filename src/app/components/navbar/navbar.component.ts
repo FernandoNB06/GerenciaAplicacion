@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CarritoService, ProductoCarrito } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink,RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -14,7 +14,10 @@ export class NavbarComponent implements OnInit {
   carritoAbierto = false;
   productosCarrito: ProductoCarrito[] = [];
 
-  constructor(private carritoService: CarritoService) {}
+  constructor(
+    private carritoService: CarritoService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.carritoService.productos$.subscribe(productos => {
@@ -22,6 +25,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  // 🛒 --- FUNCIONES DEL CARRITO ---
   toggleCarrito() {
     this.carritoAbierto = !this.carritoAbierto;
   }
@@ -56,4 +60,29 @@ export class NavbarComponent implements OnInit {
   vaciarCarrito() {
     this.carritoService.vaciarCarrito();
   }
+
+  // 👤 --- PERFIL SEGÚN TIPO DE USUARIO ---
+    // 👤 --- PERFIL SEGÚN TIPO DE USUARIO ---
+    irPerfil(): void {
+      const artesano = localStorage.getItem('artesanoLogueado');
+      const comprador = localStorage.getItem('compradorLogueado');
+
+      // Convertimos a booleano correctamente
+      const esArtesano = String(artesano).toLowerCase() === 'true';
+      const esComprador = String(comprador).toLowerCase() === 'true';
+
+      if (esArtesano) {
+        console.log('➡ Redirigiendo a perfil-artesano');
+        this.router.navigate(['/perfil-artesano']);
+      } else if (esComprador) {
+        console.log('➡ Redirigiendo a perfil-comprador');
+        this.router.navigate(['/perfil-comprador']);
+      } else {
+        console.log('⚠ No hay sesión activa');
+        alert('Debes iniciar sesión antes de ver tu perfil 🧍‍♂️');
+        this.router.navigate(['/home']);
+      }
+    }
+
+
 }
