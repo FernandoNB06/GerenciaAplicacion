@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-artesano',
@@ -10,6 +11,14 @@ import { CommonModule } from '@angular/common';
 })
 export class PerfilArtesanoComponent implements OnInit {
   usuario: any = null;
+
+  // 👇 El constructor VA DENTRO de la clase
+  constructor(private router: Router) {}
+
+  // 🔹 BOTÓN “Ir al Dashboard”
+  irAlDashboard(): void {
+    this.router.navigate(['/dashboard-artesano']);
+  }
 
   ngOnInit(): void {
     // 🔹 Leemos datos personales y de sesión
@@ -43,7 +52,6 @@ export class PerfilArtesanoComponent implements OnInit {
       console.warn('⚠ No se encontraron datos del artesano en localStorage');
     }
   }
-
 
   cerrarSesion(): void {
     localStorage.removeItem('artesanoLogueado');
